@@ -15,10 +15,8 @@ parser.add_argument("-gpu", "--enable_gpu", default = "true",
              help = "to enable or disable gpu [default True]")
 parser.add_argument("--enable_internet", default = "false",
             help = "to make kernel can download libraries [default False]")
-parser.add_argument("dataset_sources",
-            help = "name of datasets in shape username/dataset-slug [default is none]")
-
 args = parser.parse_args()
+
 
 title = args.title
 id_str = title.replace(' ', '-')
@@ -32,11 +30,11 @@ json = """{{
   "is_private": "{}",
   "enable_gpu": "{}",
   "enable_internet": "{}",
-  "dataset_sources": ["{}"],
+  "dataset_sources": [],
   "competition_sources": [],
   "kernel_sources": []
 }}""".format(id_str, title,  args.code_file,  "python", args.kernel_type,
- args.is_private, args.enable_gpu,args.enable_internet, args.dataset_sources)
+ args.is_private, args.enable_gpu,args.enable_internet)
 
 with open('kernel-metadata.json', 'w') as kernel:
    kernel.write(json)
