@@ -6,7 +6,8 @@ parser = argparse.ArgumentParser(description = \
                     "it create kaggle kernel-metadata.json")
 
 parser.add_argument("title", help = "title of kernel")
-parser.add_argument("code_file", help = "name of file that has code")
+parser.add_argument("--code_file", help = "name of file that has code",
+                        default = 'file_kaggle.py')
 parser.add_argument("-kt", "--kernel_type", default = "script",
              help = "type of kernel either script or notebook [default script]")
 parser.add_argument("--is_private", default = "true",
