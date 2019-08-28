@@ -25,7 +25,7 @@ for file_name in os.listdir('.'):
 python_list.remove(main_file)
 #open two files one to track number of lines and other to write operations in
 f1 = open('track.txt', 'w')
-f2 = open('file_kaggle.txt', 'w')
+f2 = open('file_kaggle.py', 'w')
 #this variable will be used in track file
 line_number = 0
 
