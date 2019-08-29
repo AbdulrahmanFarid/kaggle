@@ -2,20 +2,24 @@
 import re
 import sys
 
-#i open kernel-metadata to get name of the log file
-with open('kernel-metadata.json', 'r') as f:
-    lines = f.readlines()
+#i will convert it to accept provided numbers
+try:
+    line_number = sys.argv[1]
+except:
+    #i open kernel-metadata to get name of the log file
+    with open('kernel-metadata.json', 'r') as f:
+        lines = f.readlines()
 
-name = lines[2].split(':')[1].replace('"', '').replace(',', '')
-name = name[1:-1].replace(' ', '-') + '.log'
+    name = lines[2].split(':')[1].replace('"', '').replace(',', '')
+    name = name[1:-1].replace(' ', '-') + '.log'
 
-#then i read content of the log file
-with open(name, 'r') as f:
-    lines =f.readlines()
+    #then i read content of the log file
+    with open(name, 'r') as f:
+        lines =f.readlines()
 
-#search for line that has wrong in the log file
-line_number = int(re.search(r'\d+', lines[1]).group(0))
-print(line_number)
+    #search for line that has wrong in the log file
+    line_number = int(re.search(r'\d+', lines[1]).group(0))
+    print(line_number)
 
 #then here i search for the name of the file that has that wrong
 with open('track.txt', 'r') as f:
