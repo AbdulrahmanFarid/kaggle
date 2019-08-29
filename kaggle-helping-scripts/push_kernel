@@ -1,5 +1,9 @@
 #!/bin/bash
 
 file_name=$1
+if [[ -z $file_name ]]; then
+    echo "you should write name of the file"
+    exit 1
+
 push_kaggle $file_name
 kaggle kernels push
