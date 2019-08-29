@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+#import re
+import os
+with open('kernel-metadata.json', 'r') as f:
+    lines = f.readlines()
+
+name = lines[2].split(':')[1].replace('"', '').replace(',', '')
+name = name[1:-1].replace(' ', '-') #+ '.log'
+
+os.system('kaggle kernels output abdulrahmanfarid/' + name)
+#here i tried re but i don't know why it doesn't work
+#print(re.search('[^ "title": ]".+"?[^,]',lines[2]))
