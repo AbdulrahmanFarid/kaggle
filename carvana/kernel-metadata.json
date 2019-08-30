@@ -1,0 +1,13 @@
+{
+  "id": "abdulrahmanfarid/why-all-that",
+  "title": "why all that",
+  "code_file": "file_kaggle.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "false",
+  "dataset_sources": [],
+  "competition_sources": ["carvana-image-masking-challenge"],
+  "kernel_sources": []
+}
