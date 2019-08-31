@@ -1,0 +1,60 @@
+#!/usr/bin/python3
+import sys
+import os
+
+#if given name of file that will import all files from it will continue 
+try:
+    main_file = sys.argv[1]
+#else print error message as name is required
+except IndexError as e:
+    print("you should write name of file")
+    sys.exit(1)
+
+#then i open file to read lines from it
+with open(main_file, 'r') as input_file:
+    #Read the file contents and generate a list for each line
+    lines = input_file.readlines()
+
+#making list for python files that exist in the current directory
+python_list = []
+for file_name in os.listdir('.'):
+    if(file_name.endswith('.py')):
+            python_list.append(file_name)
+
+#removing from them the file that will be done on it operations
+python_list.remove(main_file)
+#open two files one to track number of lines and other to write operations in
+f1 = open('track.txt', 'w')
+f2 = open('file_kaggle.py', 'w')
+#this variable will be used in track file
+line_number = 0
+
+#here is the main code
+#first i get each line in the main_file
+for line in lines:
+    line_number = line_number + 1
+    #this variable will be used to check if file added so i don't write import
+    #command again in the file
+    file_exist = False
+    #i loop on each python file in the python list
+    for file_python in python_list:
+        #i check if line starts with from as may name of function in the file
+        #is the same as name of file,
+        #then i check the name exist without .py
+        if line.startswith('from') and (file_python[:-3] in line):
+            #then i read from the python file that made for it import
+            file_python_data = open(file_python, 'r').readlines()
+            length = len(file_python_data)
+            f1.write(str(line_number) + '-' + str(line_number + length) +\
+                            '--' + file_python)
+            f1.write('\n')
+            line_number = line_number + length
+            for line_again in file_python_data:
+                f2.write(line_again)
+            f2.write('\n')
+            file_exist = True
+            break
+    #i not python file and normal command write it to the final file
+    if not file_exist:
+        f2.write(line)
+
