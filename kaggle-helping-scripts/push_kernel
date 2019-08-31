@@ -6,5 +6,5 @@ if [[ -z $file_name ]]; then
     exit 1
 fi
 
-push_kaggle $file_name
+merge_files $file_name
 kaggle kernels push
